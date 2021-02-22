@@ -1,38 +1,240 @@
+body {
+  background-color: #f5f5f5;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Login form css starts */
+
+.login-form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
 }
+
+.form {
+    width: 500px;
+    margin: auto;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 2rem;
+    background: white;
+}
+
+.error-message {
+  color: red;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 1rem 0;
+}
+
+.form-group label {
+    font-size: 14px;
+    color: #5d5a5a;
+    font-weight: normal;
+    margin-bottom: 0.25rem;
+}
+
+.form-group input {
+	width: 95%;
+	font-size: 16px;
+	padding: 10px;
+} 
+
+.form-group button {
+	padding: 10px;
+	background: #1d88ca;
+	color: white;
+	outline: 0;
+	border-radius: 5px;
+	border: transparent;
+}
+
+/* Login form css ends */
+
+/* Calender css starts */
+
+
+.dashboard {
+  width: 100%
+}
+
+.calender-container {
+  width: 75%;
+  margin: auto;
+  border: 1px solid grey;
+}
+
+.calender-days-name, .calender-week {
+  display: flex;
+}
+
+.calender-cell {
+  flex: 1;
+  height: 64px;
+  border: 1px solid grey;
+  cursor: pointer;
+  padding-top: 10px;
+}
+
+.calender-cell-blue-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: blue;
+  margin: auto;
+  margin-top: 16px;
+}
+
+.colored-cell {
+  background-color: lightskyblue;
+}
+
+/* Calender css ends */
+
+/* Menu Navbar starts */
+
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 10px;
+  background-color: darkslategrey;
+}
+
+li {
+  font-size: large;
+  font-weight: 600;
+  list-style: none;
+}
+
+.nav-container {
+  list-style: none;
+}
+
+.nav-container li {
+  display: inline-block;
+  padding: 0px 20px;
+
+}
+
+.nav-container li .nav-links {
+  color: white;
+  transition: all 0.4s ease 0s;
+  text-decoration: none;
+}
+
+.nav-container li .nav-links:hover {
+  color: lightsteelblue;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 32px;
+  color: whitesmoke;
+}
+
+/* Navbar ends*/
+
+/* Schedular starts*/
+
+.schedular-container {
+  width: 100%;
+}
+
+.email-multiple-input:focus {
+  border-color: rgb(11, 88, 230);
+  outline: none;
+}
+
+.has-error:focus {
+  border-color: rgb(241, 101, 76);
+}
+
+.error {
+  margin: 0;
+  font-size: 90%;
+  color: rgb(241, 101, 76);
+}
+
+.remove-email-button {
+  border-radius: 50% !important;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Schedular style ends*/
+
+/* PopUp modal style starts*/
+
+.pop-up {
+  width: 500px;
+  background:rgb(198, 222, 236);
+  border: 1px solid rgb(80, 77, 77);
+}
+
+.pop-up  h2 {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem;
+  margin: 0;
+}
+
+.pop-up .content {
+  padding: 1rem;
+}
+
+.pop-up .content li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pop-up .content li .meeting-data-span {
+  display: inline-block;
+  margin-left: 30px;
+}
+
+.pop-up .actions {
+  border-top: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+}
+
+.pop-up .actions button {
+  border: 0;
+  background: rgb(63, 147, 216);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  line-height: 1;
+}
+
+#centered-toggle-button {
+  position: absolute;
+}
+
+.glassbox {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
