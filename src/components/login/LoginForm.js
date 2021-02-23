@@ -45,7 +45,6 @@ export const LoginForm = () => {
       setError('Incorrect password entered !!')
     } else if (currentUser.password === userData.password) {
 			setGoToDashboard(true);
-			console.log('hello')
     }
   };
 

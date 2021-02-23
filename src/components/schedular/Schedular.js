@@ -16,23 +16,15 @@ export const Schedular = () => {
 
   useEffect(() => {
     if(id) {
-      console.log(location)
-      console.log(schedular)
-      console.log(id)
-
       const selectedDate = schedular.find(item => item.id === Number(id));
-      console.log(selectedDate)
       selectedDate && setEditableMeeting(selectedDate);
     }
   }, [id])
   
   const submitMeetingDetails = (meetingData, editId) => {
     if(editId) {
-      console.log('edit')
-      console.log('updated meeting data', meetingData)
       dispatch({ type: 'EDIT', payload:{ meetingData, id: meetingData.id }});
     } else {
-      console.log('add')
       dispatch({ type: 'ADD', payload: { meetingData } });
     }
     setGoToDashBoard(true);

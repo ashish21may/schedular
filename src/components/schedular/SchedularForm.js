@@ -9,7 +9,6 @@ export const SchedularForm = ({ onSubmit, initialData = {} }) => {
   useEffect(() => {
     if (Object.keys(initialData).length !== 0 ) {
       const currentData = {...initialData};
-      console.log(currentData)
       setMeetingData(initialData)
       setAttendeeEmails(currentData.emails)
     }
