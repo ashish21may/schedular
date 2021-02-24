@@ -72,11 +72,12 @@ body {
 
 
 .dashboard {
-  width: 100%
+  width: 100%;
+  height: fit-content;
 }
 
 .calender-container {
-  width: 75%;
+  width: 60%;
   margin: auto;
   border: 1px solid grey;
 }
@@ -85,12 +86,20 @@ body {
   display: flex;
 }
 
+.calender-days-name {
+  border-bottom: 1px solid grey;
+  line-height: 3.5;
+}
+
 .calender-cell {
   flex: 1;
   height: 64px;
-  border: 1px solid grey;
   cursor: pointer;
   padding-top: 10px;
+}
+
+.calender-cell:nth-last-child(-n+2) {
+  background-color: rgb(236 234 234);
 }
 
 .calender-cell-blue-circle {
@@ -103,7 +112,7 @@ body {
 }
 
 .colored-cell {
-  background-color: lightskyblue;
+  background-color: lightskyblue !important;
 }
 
 /* Calender css ends */
@@ -186,35 +195,38 @@ li {
 
 /* PopUp modal style starts*/
 
+.popup-box {
+  margin: 32px 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .pop-up {
   width: 500px;
   background:rgb(198, 222, 236);
   border: 1px solid rgb(80, 77, 77);
 }
 
-.pop-up  h2 {
+.pop-up  h3, .pop-up .content {
   border-bottom: 1px solid #ccc;
   padding: 1rem;
   margin: 0;
 }
 
-.pop-up .content {
-  padding: 1rem;
-}
-
 .pop-up .content li {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 }
 
-.pop-up .content li .meeting-data-span {
+.pop-up .content li span, .pop-up .content li ul {
   display: inline-block;
-  margin-left: 30px;
+  min-width: 150px;
+  text-align: left;
 }
 
 .pop-up .actions {
-  border-top: 1px solid #ccc;
   padding: 0.5rem 1rem;
 }
 
@@ -227,14 +239,8 @@ li {
   line-height: 1;
 }
 
-#centered-toggle-button {
-  position: absolute;
+.margin-left-none {
+  padding-left: 0px;
 }
 
-.glassbox {
-  margin-top: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+/* PopUp modal style starts*/

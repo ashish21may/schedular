@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 
 export const PopUp = ({ onToggle, selectedCell }) => {
-  const schedular = useSelector(state => state.meetingData)
-  const [meetingDetails, setMeetingDetails] = useState({})
+  const schedular = useSelector((state) => state.MeetingReducer.meetingData);
+  const [meetingDetails, setMeetingDetails] = useState([]);
 
   useEffect(() => {
-    if(selectedCell) {
-      const selectedMeeting = schedular.find(item => item.id === Number(selectedCell));
-      selectedMeeting && setMeetingDetails(selectedMeeting);
+    if (selectedCell && schedular) {
+      const selectedMeeting = schedular.filter(
+        (item) => item.id === Number(selectedCell)
+      );
+      console.log(selectedMeeting)
+      selectedMeeting.length && setMeetingDetails(selectedMeeting);
     }
-    return ()=> setMeetingDetails({})
-  }, [selectedCell])
+    return () => setMeetingDetails({});
+  }, [selectedCell]);
 
   const closePopUp = () => {
     onToggle();
@@ -19,33 +22,54 @@ export const PopUp = ({ onToggle, selectedCell }) => {
 
   return (
     <div className="pop-up" id="popup">
-      {meetingDetails.id ? (
+      {meetingDetails.length ? (
         <>
-        <h3>Meeting Details for the selected Date</h3>
-        <div className="content"> 
-          <ul>
-            <li>Name: <span>{meetingDetails.name}</span></li>
-            <li>Date: <span>{meetingDetails.date}</span></li>
-            <li>Description: <span>{meetingDetails.description}</span></li>
-            <li>Attendees are: <ul>{meetingDetails.emails && meetingDetails.emails.map(user=>{
-              return <li> {user} </li>
-            })}</ul></li>
-          </ul>
-         </div>
-        <div class="actions">
-          <button class="toggle-button" onClick={closePopUp}>
-            close
-          </button>
-        </div>
+          <h3>Meeting Details for the selected Date</h3>
+          {meetingDetails.map((meeting,index) => {
+            return (
+              <div key={`${meeting.name}-${index}`} className="content">
+                <ul>
+                  <li>
+                    <span>Name: </span>
+                    <span>{meeting.name}</span>
+                  </li>
+                  <li>
+                    <span>Date: </span>
+                    <span>{meeting.date}</span>
+                  </li>
+                  <li>
+                    <span>Description: </span>
+                    <span>{meeting.description}</span>
+                  </li>
+                  <li>
+                    <span>Attendees are: </span>
+                    <ul className="margin-left-none">
+                      {meeting.emails &&
+                        meeting.emails.map((user, index) => {
+                          return <li key={`${user}-${index}`}> {user} </li>;
+                        })}
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            )
+          })}
+          <div className="actions">
+            <button className="toggle-button" onClick={closePopUp}>
+              close
+            </button>
+          </div>
         </>
-      ):<> 
-      <div className="content"> No Meeting scheduled </div>
-      <div class="actions">
-      <button class="toggle-button" onClick={closePopUp}>
-        close
-      </button>
-    </div>
-    </>}
+      ) : (
+        <>
+          <div className="content"> No Meeting scheduled </div>
+          <div className="actions">
+            <button className="toggle-button" onClick={closePopUp}>
+              close
+            </button>
+          </div>
+        </>
+      )}
     </div>
   );
 };

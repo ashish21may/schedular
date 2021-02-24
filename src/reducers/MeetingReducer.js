@@ -2,7 +2,7 @@ const initialState = {
   meetingData: [],
 };
 
-export const MeetingReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case "ADD":
       return {

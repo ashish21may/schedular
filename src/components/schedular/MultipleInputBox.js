@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-export const MultipleInputBox = ({onEmailUpdate, attendeeEmails, noEmailError}) => {
+export const MultipleInputBox = ({
+  onEmailUpdate,
+  attendeeEmails,
+  noEmailError,
+}) => {
   const [emailData, setEmailData] = useState([]);
   const [currentEmail, setCurrentEmail] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
     attendeeEmails && setEmailData(attendeeEmails);
-    noEmailError && setError("Enter atleast one email id and press Enter")
-  }, [attendeeEmails, noEmailError])
+    noEmailError && setError("Enter atleast one email id and press Enter");
+  }, [attendeeEmails, noEmailError]);
 
   const handleKeyDown = (e) => {
     if (["Enter", "Tab", ","].includes(e.key)) {
@@ -17,7 +21,7 @@ export const MultipleInputBox = ({onEmailUpdate, attendeeEmails, noEmailError}) 
 
       if (value && isEmailValid(value)) {
         setEmailData([...emailData, currentEmail]);
-				onEmailUpdate([...emailData, currentEmail])
+        onEmailUpdate([...emailData, currentEmail]);
         setCurrentEmail("");
       }
     }
@@ -29,10 +33,10 @@ export const MultipleInputBox = ({onEmailUpdate, attendeeEmails, noEmailError}) 
   };
 
   const deleteEmail = (item) => {
-		const presentEmails = [...emailData];
-		const updatedEmailDetails = presentEmails.filter((email) => email !== item)
+    const presentEmails = [...emailData];
+    const updatedEmailDetails = presentEmails.filter((email) => email !== item);
     setEmailData(updatedEmailDetails);
-		onEmailUpdate(updatedEmailDetails);
+    onEmailUpdate(updatedEmailDetails);
   };
 
   const handlePaste = (e) => {
@@ -46,7 +50,7 @@ export const MultipleInputBox = ({onEmailUpdate, attendeeEmails, noEmailError}) 
         (email) => !emailData.includes(email)
       );
       setEmailData([...emailData, ...emailsToBeAdded]);
-			onEmailUpdate([...emailData, ...emailsToBeAdded]);
+      onEmailUpdate([...emailData, ...emailsToBeAdded]);
     }
   };
 
@@ -62,13 +66,15 @@ export const MultipleInputBox = ({onEmailUpdate, attendeeEmails, noEmailError}) 
   };
 
   const isEmail = (email) => {
-    return /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/.test(email);
+    const emailRegExChecker = /[\w\d\.-]+@[\w\d\.-]+\.[\w\d\.-]+/;
+    return emailRegExChecker.test(email);
   };
 
   return (
     <>
       <input
-        className={`email-multiple-input ${error ? 'has-error' : '' }`}
+        className={`email-multiple-input ${error ? "has-error" : ""}`}
+        name="attendees"
         value={currentEmail}
         onKeyDown={handleKeyDown}
         onChange={handleCurrentEmail}

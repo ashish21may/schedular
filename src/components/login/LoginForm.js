@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 
 export const LoginForm = () => {
   const [userData, setUserData] = useState({ email: "", password: "" });
-	const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
   const [error, setError] = useState("");
-	const [goToDashboard, setGoToDashboard] = useState(false)
+  const [goToDashboard, setGoToDashboard] = useState(false);
 
   useEffect(() => {
-    getData()
-  },[])
-
-  // const handleUsersDetail = (data) => {
-
-  // }
+    getData();
+  }, []);
 
   const getData = async () => {
     try {
@@ -23,40 +19,41 @@ export const LoginForm = () => {
           Accept: "application/json",
         },
       });
-      const data = await response.json()
+      const data = await response.json();
       setUsers(data);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   const handleInputChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
   const handleFormSubmit = (e) => {
-		e.preventDefault();
-		const updatedUsers = [...users];
-    const currentUser = updatedUsers.find(user=> user.email === userData.email)
+    e.preventDefault();
+    const updatedUsers = [...users];
+    const currentUser = updatedUsers.find(
+      (user) => user.email === userData.email
+    );
 
-    if(!currentUser) {
-      setError('Email id not present !!')
-    } else if(currentUser.password !== userData.password) {
-      setError('Incorrect password entered !!')
+    if (!currentUser) {
+      setError("Email id not present !!");
+    } else if (currentUser.password !== userData.password) {
+      setError("Incorrect password entered !!");
     } else if (currentUser.password === userData.password) {
-			setGoToDashboard(true);
+      setGoToDashboard(true);
     }
   };
 
-		if(goToDashboard) {
-			return <Redirect to='/dashboard' />
-		}
+  if (goToDashboard) {
+    return <Redirect to="/dashboard" />;
+  }
 
   return (
     <div className="login-form-container">
-
       <form className="form" onSubmit={handleFormSubmit}>
-      <h2> Welcome to Oracle Meeting schedular </h2>
+        <h2> Welcome to Schedular </h2>
         <div className="form-group">
           <label>Email</label>
           <input
@@ -75,7 +72,7 @@ export const LoginForm = () => {
             name="password"
             value={userData.password}
             onChange={handleInputChange}
-						autoComplete="off"
+            autoComplete="off"
             required
           />
         </div>
@@ -84,11 +81,10 @@ export const LoginForm = () => {
         <div className="form-group">
           <button type="submit" name="button">
             {" "}
-            Login {" "}
+            Login{" "}
           </button>
         </div>
       </form>
     </div>
   );
 };
-
