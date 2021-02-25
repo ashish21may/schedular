@@ -4,6 +4,7 @@ import { SchedularForm } from "./SchedularForm";
 import { useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import { addMeeting, editMeetingSchedule } from "../../actions";
 
 export const Schedular = () => {
   const dispatch = useDispatch();
@@ -23,9 +24,9 @@ export const Schedular = () => {
 
   const submitMeetingDetails = (meetingData, editId) => {
     if (editId) {
-      dispatch({ type: "EDIT", payload: { meetingData, id: meetingData.id } });
+      dispatch(editMeetingSchedule(meetingData));
     } else {
-      dispatch({ type: "ADD", payload: { meetingData } });
+      dispatch(addMeeting(meetingData));
     }
     setGoToDashBoard(true);
   };
